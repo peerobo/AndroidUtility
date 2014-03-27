@@ -1,7 +1,7 @@
 AndroidUtility
 ==============
 
-Immersive, Handle Back Key, Show Video Ad
+Immersive, Handle Back Key, Show Video Ad (Vungle Network)
 
 
 Please include these permissions in Android Manifest:
