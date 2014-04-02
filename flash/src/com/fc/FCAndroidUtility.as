@@ -2,8 +2,8 @@ package com.fc
 {
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
-	import flash.events.StatusEvent;
-	import flash.external.ExtensionContext;
+	//import flash.events.StatusEvent;
+	//import flash.external.ExtensionContext;
 	
 	/**
 	 * ...
@@ -28,9 +28,9 @@ package com.fc
 		public var onStop:Function;
 		public var onRestart:Function;
 		public var onBackKeyHandle:Function;
-		public var onAdDone:Function;
+		/*public var onAdDone:Function;
 		public var onAdNotDone:Function;
-		public var onAdStart:Function;
+		public var onAdStart:Function;*/
 		public function FCAndroidUtility(enf:Enforcer) 
 		{
 			super();
@@ -68,7 +68,7 @@ package com.fc
 					//if (onRestart is Function)
 						//onRestart();
 				//break;
-				//case "adVideo":
+				///*case "adVideo":
 					//switch(e.level)
 					//{
 						//case "done":
@@ -84,7 +84,7 @@ package com.fc
 								//onAdStart();
 						//break;
 					//}
-				//break;
+				//break;*/
 			//}
 		//}
 		
@@ -100,24 +100,10 @@ package com.fc
 			return id;
 		}
 		
-		public function init(adID:String = ""):void
+		public function init():void
 		{
-			//extCxt.call("init", adID);			
+			//extCxt.call("init");			
 			doneInit = false;
-		}
-		
-		public function showVideoAd():Boolean
-		{
-			var retbool:Boolean = false;
-			//retbool = extCxt.call("showVideoAd");	
-			return retbool;
-		}
-		
-		public function isVideoAdAvailable():Boolean
-		{
-			var retbool:Boolean = false;
-			//retbool = extCxt.call("isVideoAdAvailable");	
-			return retbool;
 		}
 		
 		public function set isHandleBackKey(isHandleBackKey:Boolean):void

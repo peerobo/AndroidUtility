@@ -14,18 +14,6 @@ public class FCAndroidUtilityInitFunc implements FREFunction {
 	public FREObject call(FREContext arg0, FREObject[] arg1) {
 		Log.w("FCAndroidUtility", "start init extension");
 		Activity mainActivity = arg0.getActivity();
-		String adId = "";
-		try{
-			adId = arg1[0].getAsString();
-			if(adId == null)
-				adId = "";
-		}
-		catch(Exception e){
-			Log.w("FCAndroidUtility:", e.getMessage());
-			adId = "";
-		}
-		Log.w("FCAndroidUtility", "id ad " + adId);
-		FCMainActivity.adId = adId;
 		if(FCMainActivity.self == null)
 		{
 			Intent intent = new Intent(mainActivity,FCMainActivity.class);		

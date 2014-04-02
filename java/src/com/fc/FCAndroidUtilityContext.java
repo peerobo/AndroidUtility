@@ -22,8 +22,6 @@ public class FCAndroidUtilityContext extends FREContext {
 		fs.put(FCAndroidUtilityInitFunc.NAME, new FCAndroidUtilityInitFunc());
 		fs.put(FCAndroidUtilityBackKeyFunction.NAME, new FCAndroidUtilityBackKeyFunction());
 		fs.put(FCAndroidUtilityVersionFunction.NAME, new FCAndroidUtilityVersionFunction());
-		fs.put(FCAndroidUtilityAdAvailableFunc.NAME, new FCAndroidUtilityAdAvailableFunc());
-		fs.put(FCAndroidUtilityVideoAdFunc.NAME, new FCAndroidUtilityVideoAdFunc());
 		return fs;
 	}
 
