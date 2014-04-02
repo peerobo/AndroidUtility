@@ -16,3 +16,4 @@ And in extensions tag:
   <extensionID>com.fc.AndroidUtility</extensionID>
 </extensions>
 ```
+ANE file download in the buid folder.
