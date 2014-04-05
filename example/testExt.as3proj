@@ -68,6 +68,7 @@
     <element path="lib\AirGooglePlayGamesService.ane" />
     <element path="lib\AirDeviceId.ane" />
     <element path="lib\applifier-impact-mobile.ane" />
+    <element path="lib\GooglePlay.ane" />
   </externalLibraryPaths>
   <!-- Runtime Shared Libraries -->
   <rslPaths>

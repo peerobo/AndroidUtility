@@ -1,7 +1,8 @@
 package com.fc 
-{
+{	
+	import flash.events.Event;
 	import flash.events.EventDispatcher;
-	import flash.events.IEventDispatcher;
+	import flash.events.IEventDispatcher;	
 	//import flash.events.StatusEvent;
 	//import flash.external.ExtensionContext;
 	
@@ -11,6 +12,16 @@ package com.fc
 	 */
 	public class FCAndroidUtility extends EventDispatcher 
 	{
+		public static const SIGN_IN_OK:String = "SIGN_IN_OK";
+		public static const SIGN_IN_FAILED:String = "SIGN_IN_FAILED";
+		public static const NOT_SIGN_IN:String = "NOT_SIGN_IN";
+		public static const NETWORK_ERROR:String = "NETWORK_ERROR";
+		public static const LICENSE_ERROR:String = "LICENSE_ERROR";
+		public static const ACHIEVEMENT_WRONG:String = "ACHIEVEMENT_WRONG";
+		public static const SERVICE_ERROR:String = "SERVICE_ERROR";
+		public static const ACHIVEMENT_WND_SHOWN:String = "ACHIVEMENT_WND_SHOWN";
+		public static const LEADERBOARD_WND_SHOWN:String = "LEADERBOARD_WND_SHOWN";
+		
 		private static var ins:FCAndroidUtility;
 		public static function get instance():FCAndroidUtility
 		{
@@ -18,73 +29,49 @@ package com.fc
 				ins = new FCAndroidUtility(new Enforcer);
 			return ins;
 		}
-		
+		public var isInit:Boolean;
 		//private var extCxt:ExtensionContext;		
-		private var _isHandleBackKey:Boolean;
-		public var doneInit:Boolean;
-		public var onInit:Function;
-		public var onResume:Function;
-		public var onPause:Function;
-		public var onStop:Function;
-		public var onRestart:Function;
-		public var onBackKeyHandle:Function;
-		/*public var onAdDone:Function;
-		public var onAdNotDone:Function;
-		public var onAdStart:Function;*/
 		public function FCAndroidUtility(enf:Enforcer) 
 		{
 			super();
 			//extCxt = ExtensionContext.createExtensionContext("com.fc.AndroidUtility", "");
 			//extCxt.addEventListener(StatusEvent.STATUS, onNativeResponse);
-			doneInit = false;
 		}
 		
 		//private function onNativeResponse(e:StatusEvent):void 
 		//{
-			//switch(e.code)
+			//if(e.code == "GooglePlay")
 			//{
-				//case "init":
-					//if (onInit is Function)
-						//onInit();
-					//doneInit = true;
-				//break;
-				//case "backkey":
-					//if (onBackKeyHandle is Function)
-						//onBackKeyHandle();
-				//break;
-				//case "resume":
-					//if (onResume is Function)
-						//onResume();
-				//break;
-				//case "pause":
-					//if (onPause is Function)
-						//onPause();
-				//break;
-				//case "stop":
-					//if (onStop is Function)
-						//onStop();
-				//break;
-				//case "restart":
-					//if (onRestart is Function)
-						//onRestart();
-				//break;
-				///*case "adVideo":
-					//switch(e.level)
-					//{
-						//case "done":
-							//if (onAdDone is Function)
-								//onAdDone();
-						//break;
-						//case "notdone":
-							//if (onAdNotDone is Function)
-								//onAdNotDone();
-						//break;
-						//case "start":
-							//if (onAdStart is Function)
-								//onAdStart();
-						//break;
-					//}
-				//break;*/
+				//switch(e.level)
+				//{
+					//case "signinFailed":
+						//dispatchEvent(new Event(SIGN_IN_FAILED));
+					//break;
+					//case "notSignin":
+						//dispatchEvent(new Event(NOT_SIGN_IN));
+					//break;
+					//case "signinOK":
+						//dispatchEvent(new Event(SIGN_IN_OK));
+					//break;
+					//case "networkError":
+						//dispatchEvent(new Event(NETWORK_ERROR));
+					//break;
+					//case "licenseError":
+						//dispatchEvent(new Event(LICENSE_ERROR));
+					//break;
+					//case "achievementWrong":
+						//dispatchEvent(new Event(ACHIEVEMENT_WRONG));
+					//break;
+					//case "serviceError":
+						//dispatchEvent(new Event(SERVICE_ERROR));
+					//break;
+					//case "achievementsShown":
+						//dispatchEvent(new Event(ACHIVEMENT_WND_SHOWN));
+					//break;
+					//case "leaderboardsShown":
+						//dispatchEvent(new Event(LEADERBOARD_WND_SHOWN));
+					//break;
+				//}
 			//}
 		//}
 		
@@ -100,22 +87,42 @@ package com.fc
 			return id;
 		}
 		
-		public function init():void
-		{
-			//extCxt.call("init");			
-			doneInit = false;
+		public function init(enableGooglePlay:Boolean):void
+		{			
+			//extCxt.call("init", enableGooglePlay);
+			isInit = true;
 		}
 		
-		public function set isHandleBackKey(isHandleBackKey:Boolean):void
+		public function gpLogin():void
 		{
-			this._isHandleBackKey = isHandleBackKey;
-			//extCxt.call("setBackKeyHandle", isHandleBackKey);
+			//extCxt.call("gpSignin");
 		}
 		
-		public function get isHandleBackKey():Boolean
+		public function gpLogout():void
 		{
-			return _isHandleBackKey;
+			//extCxt.call("gpSignout");
 		}
+		
+		public function gpUnlockAchievement(achi:String):void
+		{
+			//extCxt.call("unlockAchievement",achi);
+		}
+		
+		public function gpSetScore(id:String, score:int):void
+		{
+			//extCxt.call("setScore", id, score);
+		}
+		
+		public function gpShowAchievement():void
+		{
+			//extCxt.call("showAchievements");
+		}
+		
+		public function gpShowLeaderboard():void
+		{
+			//extCxt.call("showLeaderboards");
+		}		
+		
 	}
 
 }

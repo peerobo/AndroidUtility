@@ -2,10 +2,14 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="lib" path="D:/iosdev/fasdk/sdkwin/lib/android/FlashRuntimeExtensions.jar"/>
-	<classpathentry kind="lib" path="extlibs/vungle-publisher-1.3.11.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/iosdev/fasdk/sdkwin/lib/android/FlashRuntimeExtensions.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Android/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Program%20Files%20(x86)/Android/android-sdk/extras/google/google_play_services/docs/reference/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

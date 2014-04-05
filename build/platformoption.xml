@@ -1,0 +1,18 @@
+<platform xmlns="http://ns.adobe.com/air/extension/13.0"> 
+<description>FCAndroidUtility</description> 
+<copyright>2014</copyright> 
+<packagedDependencies>     
+    <packagedDependency>google-play-services.jar</packagedDependency> 
+    <packagedDependency>android-support-v4.jar</packagedDependency> 
+</packagedDependencies> 
+<packagedResources> 
+	<packagedResource> 
+        <packageName>com.google.example.games.basegameutils</packageName> 
+        <folderName>res-base</folderName> 
+    </packagedResource>
+	<packagedResource> 
+        <packageName>com.google.android.gms</packageName> 
+        <folderName>res-gms</folderName> 
+    </packagedResource> 
+</packagedResources>
+</platform>

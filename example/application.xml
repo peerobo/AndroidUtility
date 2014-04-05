@@ -1,24 +1,42 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?> 
 <application xmlns="http://ns.adobe.com/air/application/13.0">
-  <id>com.fc.testExt</id>
-  <versionNumber>1.0.5</versionNumber>
-  <supportedProfiles>mobileDevice</supportedProfiles>
-  <filename>testExt</filename>
-  <name>testExt</name>
-  <android>
+	
+	<id>com.fc.movthecat</id>
+	<versionNumber>1.0.0</versionNumber>
+	<supportedProfiles>mobileDevice</supportedProfiles>
+	<filename>movthecat</filename>	
+	<name>MovTheCat</name>
+	<description></description>
+	<copyright></copyright>
+	
+	<android>
     <manifestAdditions>
 		<![CDATA[<manifest android:installLocation="auto">
 			<uses-sdk android:targetSdkVersion="19"/>
-			<uses-sdk android:minSdkVersion="8"/>		
+			<uses-sdk android:minSdkVersion="9"/>			
 			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>			
 			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>			
+			<uses-permission android:name="com.android.vending.BILLING" />
 			<uses-permission android:name="android.permission.INTERNET"/>
+			<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-			<application android:enabled="true">				
-				<activity android:name="com.fc.FCMainActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />					
+			<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+			<uses-permission android:name="android.permission.WAKE_LOCK"/>
+			<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+			<application android:enabled="true">								
+				<meta-data android:name="com.google.android.gms.games.APP_ID" android:value="\ 996043357807" />
+				<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+				<activity android:name="com.fc.FCAndroidUtilityActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+				<activity android:name="com.pozirk.payment.BillingActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:background="#30000000" />				
+				<activity android:excludeFromRecents="false">
+					<intent-filter>
+						<action android:name="android.intent.action.MAIN"/>
+						<category android:name="android.intent.category.LAUNCHER"/>
+					</intent-filter>
+				</activity>				
 				<activity android:name="com.vungle.sdk.VungleAdvert" android:configChanges="keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 				<service android:name="com.vungle.sdk.VungleIntentService"/>
-			</application>									
+			</application>
 		</manifest>]]>
 	</manifestAdditions>
   </android>
@@ -47,28 +65,30 @@
     <requestedDisplayResolution>high</requestedDisplayResolution>
   </iPhone>
   <initialWindow>
-    <title>testExt</title>
+    <title>MovTheCat</title>
     <content>testExt.swf</content>
     <visible>true</visible>
     <fullScreen>true</fullScreen>
     <autoOrients>false</autoOrients>
-    <aspectRatio>landscape</aspectRatio>
+    <aspectRatio>portrait</aspectRatio>
     <renderMode>direct</renderMode>
     <!--<depthAndStencil>true</depthAndStencil>-->
     <!-- required for 3D -->
     <systemChrome>standard</systemChrome>
   </initialWindow>
-  <icon>
-    <image57x57>icons/icon_57.png</image57x57>
+  <icon>        
+    <image48x48>icons/icon_48.png</image48x48>    
+    <image57x57>icons/icon_57.png</image57x57>        
     <image72x72>icons/icon_72.png</image72x72>
-    <image76x76>icons/icon_76.png</image76x76>
-    <image96x96>icons/icon_96.png</image96x96>
+    <image76x76>icons/icon_76.png</image76x76>    
+    <image96x96>icons/icon_96.png</image96x96>    
     <image114x114>icons/icon_114.png</image114x114>
     <image120x120>icons/icon_120.png</image120x120>
     <image144x144>icons/icon_144.png</image144x144>
-    <image152x152>icons/icon_152.png</image152x152>
+    <image152x152>icons/icon_152.png</image152x152>    
   </icon>
-  <!-- 
+	
+	<!-- 
 	AIR options:
 	http://livedocs.adobe.com/flex/3/html/File_formats_1.html#1043413
 	
@@ -81,7 +101,13 @@
 	Android manifest documentation:
 	http://developer.android.com/guide/topics/manifest/manifest-intro.html
 	-->
-  <extensions>        
-	<extensionID>com.fc.AndroidUtility</extensionID>
-  </extensions>
+	<extensions>
+		<extensionID>com.fc.AndroidUtility</extensionID>		
+		<!--<extensionID>com.freshplanet.ane.AirDeviceId</extensionID>	
+		<extensionID>com.vungle.extensions.Vungle</extensionID>
+		<extensionID>com.leadbolt.LeadboltANE</extensionID>
+		<extensionID>com.adobe.ane.gameCenter</extensionID>
+		<extensionID>com.adobe.ane.social</extensionID>
+		<extensionID>com.fc.StoreKitExt</extensionID>-->
+	</extensions>
 </application>
