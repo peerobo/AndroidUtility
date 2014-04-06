@@ -2,6 +2,7 @@ package com.fc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -49,13 +50,13 @@ public class FCAndroidUtilityActivity extends BaseGameActivity {
 	@Override
 	public void onSignInFailed() {
 		// TODO Auto-generated method stub		
+		resumeToRoot();
 		FCAndroidUtilityHelper.context.dispatchStatusEventAsync("GooglePlay", "signinFailed");		
 	}
 
 	@Override
 	public void onSignInSucceeded() {
 		// TODO Auto-generated method stub
-		FCAndroidUtilityHelper.context.dispatchStatusEventAsync("GooglePlay", "signinOK");
 		if(followAction == -1)
 		{
 			resumeToRoot();
@@ -85,6 +86,7 @@ public class FCAndroidUtilityActivity extends BaseGameActivity {
 			}
 			followAction = -1;
 		}
+		FCAndroidUtilityHelper.context.dispatchStatusEventAsync("GooglePlay", "signinOK");		
 	}
 	
 	public void doUnlockAchievement(){
@@ -93,6 +95,7 @@ public class FCAndroidUtilityActivity extends BaseGameActivity {
 			
 		        @Override
 		        public void onResult(UpdateAchievementResult result) {
+		        	resumeToRoot();
 		           int status = result.getStatus().getStatusCode();
 		           switch(status)
 		           {
@@ -112,8 +115,7 @@ public class FCAndroidUtilityActivity extends BaseGameActivity {
 		           		case GamesStatusCodes.STATUS_INTERNAL_ERROR:
 		           			FCAndroidUtilityHelper.context.dispatchStatusEventAsync("GooglePlay", "serviceError");
 		           			break;
-		           }
-		           resumeToRoot();
+		           }		           
 		        }
 
 		});
@@ -125,11 +127,13 @@ public class FCAndroidUtilityActivity extends BaseGameActivity {
 	}
 	
 	public void doReportScore(){
+		Log.w("GooglePlay", "Sign OK. Do report score: " + idArg + ", " + String.valueOf(scoreArg));
 		PendingResult<SubmitScoreResult> res = Games.Leaderboards.submitScoreImmediate(getApiClient(), idArg, scoreArg);
 		res.setResultCallback(new ResultCallback<SubmitScoreResult>(){
 			
 		        @Override
 		        public void onResult(SubmitScoreResult result) {
+		        	resumeToRoot();
 		           int status = result.getStatus().getStatusCode();
 		           switch(status)
 		           {
@@ -143,13 +147,14 @@ public class FCAndroidUtilityActivity extends BaseGameActivity {
 		           			FCAndroidUtilityHelper.context.dispatchStatusEventAsync("GooglePlay", "serviceError");
 		           			break;			           			
 		           }
-		           resumeToRoot();		           
+		           		           
 		        }
 
 		});
 	}
 	
 	public void reportScore(String id, int score){
+		Log.w("GooglePlay", "report score: " + id + ", " + String.valueOf(score));
 		idArg = id;
 		scoreArg = score;
 		resumeToGP(REPORT_SCORE);
@@ -174,11 +179,17 @@ public class FCAndroidUtilityActivity extends BaseGameActivity {
 	@Override
 	protected void onActivityResult(int request, int response, Intent data) {
 		// TODO Auto-generated method stub
-		super.onActivityResult(request, response, data);
+		super.onActivityResult(request, response, data);		
 		if(request == SHOW_ACHIEVEMENTS)
+		{
 			FCAndroidUtilityHelper.context.dispatchStatusEventAsync("GooglePlay", "achievementsShown");
+			resumeToRoot();
+		}
 		else if(request == SHOW_LEADERBOARDS)
+		{
 			FCAndroidUtilityHelper.context.dispatchStatusEventAsync("GooglePlay", "leaderboardsShown");
-		resumeToRoot();
+			resumeToRoot();
+		}
+		Log.w("GooglePlay", "ActivityResult");
 	}
 }
